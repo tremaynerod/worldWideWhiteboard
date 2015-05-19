@@ -17,7 +17,7 @@ io.on('connection', function (socket) {
     console.log('A new client has connected!');
     console.log(socket.id);
     socket.on('draw', function(start,end, strokeColor){
-        socket.broadcast.emit('draw',function(start,end,strokeColor))
+        socket.broadcast.emit('draw',start,end,strokeColor)
     })
 
 });
