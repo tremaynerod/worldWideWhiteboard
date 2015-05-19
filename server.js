@@ -16,7 +16,12 @@ io.on('connection', function (socket) {
     // This function will be called for EACH browser that connects to our server.
     console.log('A new client has connected!');
     console.log(socket.id);
+    socket.on('draw', function(start,end, strokeColor){
+        console.log('hi')
+    })
+
 });
+
 
 server.listen(1337, function () {
     console.log('The server is listening on port 1337!');
