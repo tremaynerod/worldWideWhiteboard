@@ -8,7 +8,9 @@ socket.on('connect', function () {
 whiteboard.on('draw', function(start,end,strokeColor){
     socket.emit("draw",start, end, strokeColor)
 })
-
+socket.on('draw',function(start,end,strokeColor){
+    whiteboard.draw(start,end,strokeColor)
+})
 socket.on("disconnect", function(){
     console.log(':(')
 })
