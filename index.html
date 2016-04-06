@@ -2,7 +2,7 @@
     <body>
 
         <link href="style.css" type="text/css" rel="stylesheet" />
-
+        <script src="https://meet.jit.si/external_api.js"></script>
         <div id="color-selector">
             <div class="marker selected" id="black"></div>
             <div class="marker" id="purple"></div>
@@ -13,12 +13,20 @@
             <div class="marker" id="yellow"></div>
             <div class="marker" id="brown"></div>
         </div>
-
         <div id="sketch">
             <canvas id="paint"></canvas>
         </div>
-
+        <div>
+        <script>
+            var domain = "74.208.126.7";
+            var room = "crashthedomain";
+            var width = 500;
+            var height = 500;
+            var api = new JitsiMeetExternalAPI(domain, room, width, height);
+        </script>
+        </div>
         <script src="event-emitter.js"></script>
+        <script src="https://meet.jit.si/external_api.js"></script>
         <script src="whiteboard.js"></script>
         <script src="socket.io/socket.io.js"></script>
         <script src="app.js"></script>
