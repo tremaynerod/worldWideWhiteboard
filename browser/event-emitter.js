@@ -1,13 +1,13 @@
 // Here is our constructor function, available globally (set to the window object!)
-window.EventEmitter = function () {
+window.EventEmitter = function() {
     this.subscribers = {};
 };
 
-(function (EE) {
+(function(EE) {
 
     // To be used like:
     // instanceOfEE.on('touchdown', cheerFn);
-    EE.prototype.on = function (eventName, eventListener) {
+    EE.prototype.on = function(eventName, eventListener) {
 
         // If this instance's subscribers object does not yet
         // have the key matching the given event name, create the
@@ -24,7 +24,7 @@ window.EventEmitter = function () {
 
     // To be used like:
     // instanceOfEE.emit('codec', 'Hey Snake, Otacon is calling!');
-    EE.prototype.emit = function (eventName) {
+    EE.prototype.emit = function(eventName) {
 
         // If there are no subscribers to this event name, why even?
         if (!this.subscribers[eventName]) {
@@ -35,7 +35,7 @@ window.EventEmitter = function () {
         var remainingArgs = [].slice.call(arguments, 1);
 
         // For each subscriber, call it with our arguments.
-        this.subscribers[eventName].forEach(function (listener) {
+        this.subscribers[eventName].forEach(function(listener) {
             listener.apply(null, remainingArgs);
         });
 

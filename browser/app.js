@@ -1,18 +1,21 @@
-// Never seen window.location before?
-// This object describes the URL of the page we're on!
-var socket = io(window.location.origin);
+var socket = io(location.origin);
 
-socket.on('connect', function () {
-    console.log('I have made a persistent two-way connection to the server!');
+socket.on('connect', function() {
+
+    socket.emit('join awesome room', location.pathname.slice(1) || 'default');
+
+    socket.on('board', function(draws) {
+        draws.forEach(function(draw) {
+            whiteboard.draw(draw.start, draw.end, draw.color);
+        });
+    });
+
+    whiteboard.on('draw', function(start, end, color) {
+        socket.emit('imDrawing', start, end, color);
+    });
+
+    socket.on('collaboratorDraw', function(start, end, color) {
+        whiteboard.draw(start, end, color);
+    });
+
 });
-whiteboard.on('draw', function(start,end,strokeColor){
-    socket.emit("draw",start, end, strokeColor)
-})
-socket.on('draw',function(start,end,strokeColor){
-    whiteboard.draw(start,end,strokeColor)
-})
-socket.on("disconnect", function(){
-    console.log(':(')
-})
-
-
