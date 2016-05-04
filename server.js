@@ -1,12 +1,11 @@
 var path = require('path');
-
 var http = require('http');
 var server = http.createServer();
-
 var express = require('express');
 var app = express();
-
 var socketio = require('socket.io');
+
+
 
 server.on('request', app);
 
@@ -15,11 +14,6 @@ var io = socketio(server);
 var draws = {};
 var chatHistory = {}
 
-var chatBot = {
-    log: function(roomName) {
-        io.to(roo)
-    }
-}
 io.on('connection', function(socket) {
 
     console.log(socket.id, 'connected');
